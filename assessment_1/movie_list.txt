@@ -1,7 +1,0 @@
-Shrek,2003,COMEDY,u
-Shrek,2003,ACTION,u
-The Fugitive,1993,DRAMA,u
-Star Wars: Episode IV - A New Hope,1977,ACTION,w
-Citizen Kane,1941,DRAMA,u
-Fun with Dick and Jane,2005,COMEDY,w
-Persian-Roman War,557,ACTION,u
