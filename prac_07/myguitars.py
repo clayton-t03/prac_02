@@ -1,5 +1,5 @@
 FILENAME = "guitars.csv"
-guitars = []
+
 print(
     "in myguitars.py, there is no error checking, please only input numbers for year and cost and whatever for the name \nplease follow menu prompts")
 
@@ -15,46 +15,46 @@ class Guitar:
 
 
 def read_guitars():
+    guitars = []
     in_file = open(FILENAME, "r")
     for line in in_file:
         guitar = line.strip().split(",")
-        guitars.append(guitar)
-        for i in range(len(guitars)):
-            guitars[i][1] = int(guitars[i][1])
-            guitars[i][2] = float(guitars[i][2])
+        guitars.append(Guitar(guitar[0], int(guitar[1]), float(guitar[2])))
     in_file.close()
+    return guitars
 
 
-def print_guitars():
-    from operator import itemgetter
-    guitars.sort(key=itemgetter(1))
-    guitar_objects = {Guitar(*guitar) for guitar in guitars}
-    for obj in guitar_objects:
+def print_guitars(guitars):
+    for obj in guitars:
         print(obj.name, "from", obj.year, "costs", obj.cost)
 
 
-def quit():
+def quit(guitars):
     out_file = open(FILENAME, "w")
     for i in range(len(guitars)):
-        print(f"{guitars[i][0]},{guitars[i][1]},{guitars[i][2]}", file=out_file)
+        print(f"{guitars[i].name},{guitars[i].year},{guitars[i].cost}", file=out_file)
     out_file.close()
     print("Thank you")
 
 
-def add_guitars():
+def main():
+    guitars = read_guitars()
     choice = input("what would you like to: \n (A)dd a guitar \n (D)isplay guitars \n (Q) to quit \n >>>>")
     while choice != "Q":
         if choice == "A":
-            new_name = input("name: ")
-            new_year = int(input("year: "))
-            new_cost = float(input("cost: "))
-            new_guitar = [new_name, new_year, new_cost]
-            guitars.append(new_guitar)
+            guitars.append(add_guitar())
         elif choice == "D":
-            print_guitars()
+            print_guitars(guitars)
         choice = input("would you like to: \n (A)dd a guitar \n (D)isplay guitars \n (Q) to quit \n >>>>")
-    quit()
+    quit(guitars)
 
 
-read_guitars()
-add_guitars()
+def add_guitar():
+    new_name = input("name: ")
+    new_year = int(input("year: "))
+    new_cost = float(input("cost: "))
+    new_guitar = Guitar(new_name, new_year, new_cost)
+    return new_guitar
+
+
+main()
