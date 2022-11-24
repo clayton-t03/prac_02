@@ -1,0 +1,29 @@
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        TextInput:
+            id: input_number
+            font_size: 48
+            multiline: False
+            size_hint_x: 0.8
+            on_text: app.handle_calculate(input_number.text)
+        GridLayout:
+            rows: 2
+            cols: 1
+            Button:
+                text: 'up'
+                #TODO input code for up one unit
+                on_press: app.handle_increment_increase(input_number.text)
+            Button:
+                text: 'down'
+                #TODO input code for down one unit
+                on_press: app.handle_increment_decrease(input_number.text)
+    #Button:
+      #  text: 'convert miles to kilometres'
+       # #TODO input code for conversion
+        #on_press: app.handle_calculate(input_number.text)
+    Label:
+        id: output_label
+        font_size: 48
+        color: "yellow"
